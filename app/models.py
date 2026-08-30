@@ -1,6 +1,7 @@
 from enum import Enum, auto, unique
 from db import Base
 from sqlalchemy import Column, Integer, String, DateTime, Enum
+from typing import List
 
 class Status(Enum):
     SAVED = auto()
@@ -18,6 +19,7 @@ class Term(Enum):
     SUMMER = "summer"
     FALL = "fall"
 
+## sqlalchemy uses ORM -- single class = one table
 class JobPosting(Base):
     __tablename__ = "job_postings"
 
@@ -26,4 +28,4 @@ class JobPosting(Base):
     company = Column(String, nullable=False)
     status = Column(Status, nullable=False, default=Status.SAVED)
     term = Column(Term, nullable=False)
-    required_skills = Column(str[], nullable=False)
+    required_skills = Column(List[String], nullable=False)
