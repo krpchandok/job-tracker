@@ -7,19 +7,16 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r appuser && useradd -r -g appuser appuser
 
-COPY requirements.txt .
+COPY services/scraper/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY services/scraper/ .
 RUN chown -R appuser:appuser /app
 
 USER appuser
 
-EXPOSE 8000
-
-CMD ["uvicorn", "services.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+CMD ["python", "main.py"]
