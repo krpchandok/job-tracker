@@ -30,7 +30,7 @@ class JobPosting(Base):
     title = Column(String, nullable=False)
     company = Column(String, nullable=False)
     status = Column(SQLEnum(Status), nullable=False, default=Status.SAVED)
-    term = Column(SQLEnum(Term), nullable=False)
+    term = Column(SQLEnum(Term), nullable=True)
     required_skills = Column(ARRAY(String), nullable=False, default=list)
     url = Column(String, unique=True, nullable=True, index=True)
     location = Column(String, nullable=True)

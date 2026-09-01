@@ -2,7 +2,13 @@ import os
 import time
 import json
 import requests
-from aggregator import JobAggregator
+
+try:
+    # when run as a module from the repo root (python -m services.scraper.main)
+    from services.scraper.aggregator import JobAggregator
+except ImportError:
+    # when run as a flat script from inside services/scraper/ (Docker image)
+    from aggregator import JobAggregator
 
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 

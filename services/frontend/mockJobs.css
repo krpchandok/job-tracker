@@ -1,0 +1,12 @@
+.mock-jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:12px}
+.mock-job-card{background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:14px;box-shadow:0 1px 3px rgba(16,24,40,0.04);display:flex;flex-direction:column;justify-content:space-between}
+.mock-job-header{margin-bottom:8px}
+.mock-job-title{font-size:1.05rem;margin:0 0 4px}
+.mock-job-title a{color:#0b69ff;text-decoration:none}
+.mock-job-company{font-size:0.9rem;color:#374151}
+.mock-job-meta{font-size:0.85rem;color:#6b7280;margin-bottom:8px}
+.mock-job-skills{font-size:0.85rem;color:#111827;margin:6px 0}
+.mock-job-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.mock-job-visit{background:#0b69ff;color:#fff;padding:6px 10px;border-radius:6px;text-decoration:none;font-weight:600}
+.mock-job-source{font-size:0.8rem;color:#6b7280}
+.mock-jobs-loading{padding:20px;text-align:center;color:#6b7280}

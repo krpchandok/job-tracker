@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from services.api.models import Status, Term
 from typing import List, Optional
 
@@ -7,19 +7,32 @@ class JobBase(BaseModel):
     title: str
     company: str
     status: Status
-    term: Term
-    required_skills: List[str]
+    term: Optional[Term] = None
+    required_skills: List[str] = []
     url: Optional[str] = None
     location: Optional[str] = None
     source: Optional[str] = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
-class AddJob(JobBase):
-    class Config:
-        orm_mode = True
+class JobCreate(BaseModel):
+    """Payload for manually adding a posting. Only title + company are required."""
+
+    title: str
+    company: str
+    status: Status = Status.SAVED
+    term: Optional[Term] = None
+    required_skills: List[str] = []
+    url: Optional[str] = None
+    location: Optional[str] = None
+    source: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class JobRead(JobBase):
+    id: int
 
 
 class JobUpdate(BaseModel):
@@ -32,5 +45,4 @@ class JobUpdate(BaseModel):
     location: str | None = None
     source: str | None = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
